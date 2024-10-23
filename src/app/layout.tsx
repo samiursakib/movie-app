@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { GlobalStateContextProvider } from "./providers/GlobalStateContextProvider";
+import { QueryClientProviderWrapper } from "./providers/QueryClientProviderWrapper";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -29,9 +30,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <GlobalStateContextProvider>{children}</GlobalStateContextProvider>
+        <GlobalStateContextProvider>
+          <QueryClientProviderWrapper>{children}</QueryClientProviderWrapper>
+        </GlobalStateContextProvider>
       </body>
-      y32`14q1sw323efr543454321432345f5fr55rtfr54321``1432 1`EQW `543T543R4`
     </html>
   );
 }
