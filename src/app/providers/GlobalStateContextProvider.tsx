@@ -11,7 +11,7 @@ import {
 
 type GlobalStateType = {
   watchList: {
-    [key: string]: any;
+    [key: string]: string;
   }[];
 };
 
