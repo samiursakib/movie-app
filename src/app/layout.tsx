@@ -1,3 +1,4 @@
+import { Navbar } from "@/components/Navbar";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
@@ -28,10 +29,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#0C161F] text-slate-300`}
       >
         <GlobalStateContextProvider>
-          <QueryClientProviderWrapper>{children}</QueryClientProviderWrapper>
+          <QueryClientProviderWrapper>
+            <Navbar />
+            {children}
+          </QueryClientProviderWrapper>
         </GlobalStateContextProvider>
       </body>
     </html>
