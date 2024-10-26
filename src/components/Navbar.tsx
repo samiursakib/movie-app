@@ -88,13 +88,13 @@ export const Navbar = () => {
                 <div className="flex flex-col items-start mt-8 gap-3 text-sm md:hidden">
                   <Link
                     href="/"
-                    className="mr-4 text-slate-800 hover:text-slate-500 dark:hover:text-slate-400 transition"
+                    className="mr-4 text-slate-800 dark:text-slate-300 hover:text-slate-500 dark:hover:text-slate-400 transition"
                   >
                     Home
                   </Link>
                   <Link
                     href="/watchlist"
-                    className="mr-4 text-slate-800 hover:text-slate-500 dark:hover:text-slate-400 transition"
+                    className="mr-4 text-slate-800 dark:text-slate-300 hover:text-slate-500 dark:hover:text-slate-400 transition"
                   >
                     Watchlist
                   </Link>

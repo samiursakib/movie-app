@@ -59,9 +59,9 @@ export const MovieComponent = ({
     update();
   }, []);
   return (
-    <div className="container px-24 mx-auto flex gap-8">
+    <div className="p-4 pt-0 md:container md:px-24 mx-auto flex flex-col md:flex-row">
       <Toaster />
-      <div className="w-1/3 relative">
+      <div className="w-full md:w-1/3 relative mb-8 md:mr-8">
         <Image
           loader={imageLoader}
           src={"https://image.tmdb.org/t/p/w185" + movie.poster_path}
@@ -83,7 +83,7 @@ export const MovieComponent = ({
           {isAdded ? <FaBookmark /> : <FaRegBookmark />}
         </Button>
       </div>
-      <div className="w-2/3 flex flex-col gap-8">
+      <div className="w-full md:w-2/3 flex flex-col gap-8">
         <div className="text-5xl font-extralight -mb-2">{movie.title}</div>
         <div className="text-xs leading-5">{movie.overview}</div>
         <div>
@@ -137,7 +137,7 @@ export const MovieComponent = ({
             <AccordionTrigger className="font-bold">
               Recommendations
             </AccordionTrigger>
-            <AccordionContent className="grid grid-cols-6 gap-4">
+            <AccordionContent className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
               {recommendations.results.map((r) => (
                 <div
                   key={r.id}
