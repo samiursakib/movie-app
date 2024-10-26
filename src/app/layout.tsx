@@ -29,12 +29,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#0C161F] text-slate-300`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased text-slate-300 dark`}
       >
         <GlobalStateContextProvider>
           <QueryClientProviderWrapper>
-            <Navbar />
-            {children}
+            <div className="bg-[#edede9] text-blue-950 dark:text-slate-300 dark:bg-slate-950 min-h-screen">
+              <Navbar />
+              {children}
+            </div>
           </QueryClientProviderWrapper>
         </GlobalStateContextProvider>
       </body>

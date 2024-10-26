@@ -9,10 +9,12 @@ import {
   useState,
 } from "react";
 
-type GlobalStateType = {
+export type GlobalStateType = {
   watchList: {
     [key: string]: string;
   }[];
+  isSearching: boolean;
+  searchInputValue: string;
 };
 
 type GlobalStateContextType = {
@@ -29,6 +31,8 @@ export const GlobalStateContextProvider = ({
 }) => {
   const [globalState, setGlobalState] = useState<GlobalStateType>({
     watchList: [],
+    isSearching: false,
+    searchInputValue: "",
   });
   return (
     <GlobalStateContext.Provider value={{ globalState, setGlobalState }}>
