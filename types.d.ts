@@ -107,3 +107,5 @@ export type Recommendation = {
   total_pages: number;
   total_results: number;
 };
+
+export type WatchListItem = { id: number; poster_path: string; title: string };

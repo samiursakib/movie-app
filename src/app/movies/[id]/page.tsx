@@ -10,7 +10,6 @@ export default async function Page({ params }: { params: { id: number } }) {
   const movie = await getMovieDetails(movieId);
   const credit = await getMovieCredits(movieId);
   const recommendations = await getMovieRecommendations(movieId);
-  console.log(recommendations);
   return (
     <MovieComponent
       movie={movie}

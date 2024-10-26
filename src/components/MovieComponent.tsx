@@ -3,7 +3,12 @@
 import { formatDate, imageLoader } from "@/lib/utils";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { Credit, MovieDetails, Recommendation } from "../../types";
+import {
+  Credit,
+  MovieDetails,
+  Recommendation,
+  WatchListItem,
+} from "../../types";
 import {
   Accordion,
   AccordionContent,
@@ -11,6 +16,18 @@ import {
   AccordionTrigger,
 } from "./ui/accordion";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { Button } from "./ui/button";
+import { FaBookmark, FaRegBookmark } from "react-icons/fa";
+import {
+  addToWatchList,
+  getWatchList,
+  isAddedToWatchList,
+  removeFromWatchList,
+} from "@/lib/server-actions";
+import { useEffect, useState } from "react";
+import { useToast } from "@/hooks/use-toast";
+import { Toast } from "./ui/toast";
+import { Toaster } from "./ui/toaster";
 
 export const MovieComponent = ({
   movie,
@@ -22,9 +39,31 @@ export const MovieComponent = ({
   recommendations: Recommendation;
 }) => {
   const router = useRouter();
+  const { toast } = useToast();
+  const [isAdded, setIsAdded] = useState(false);
+  const handleToggleBookmark = async (movie: WatchListItem) => {
+    if (isAdded) {
+      await removeFromWatchList(movie.id);
+      setIsAdded(false);
+      toast({ description: "Removed from watchlist" });
+    } else {
+      await addToWatchList(movie);
+      setIsAdded(true);
+      toast({ description: "Added to watchlist" });
+    }
+  };
+
+  useEffect(() => {
+    const update = async () => {
+      const result = await isAddedToWatchList(movie.id);
+      setIsAdded(result);
+    };
+    update();
+  }, []);
   return (
     <div className="container px-24 mx-auto flex gap-8">
-      <div className="w-1/3">
+      <Toaster />
+      <div className="w-1/3 relative">
         <Image
           loader={imageLoader}
           src={"https://image.tmdb.org/t/p/w185" + movie.poster_path}
@@ -33,6 +72,18 @@ export const MovieComponent = ({
           height={0}
           className="w-full h-auto rounded-lg"
         />
+        <Button
+          className="absolute right-2 top-2"
+          onClick={async () =>
+            await handleToggleBookmark({
+              id: movie.id,
+              poster_path: movie.poster_path,
+              title: movie.title,
+            })
+          }
+        >
+          {isAdded ? <FaBookmark /> : <FaRegBookmark />}
+        </Button>
       </div>
       <div className="w-2/3 flex flex-col gap-8">
         <div className="text-5xl font-extralight -mb-2">{movie.title}</div>
@@ -90,7 +141,11 @@ export const MovieComponent = ({
             </AccordionTrigger>
             <AccordionContent className="grid grid-cols-6 gap-4">
               {recommendations.results.map((r) => (
-                <div key={r.id} onClick={() => router.push("/movies/" + r.id)}>
+                <div
+                  key={r.id}
+                  onClick={() => router.push("/movies/" + r.id)}
+                  className="hover:cursor-pointer"
+                >
                   <Image
                     loader={imageLoader}
                     src={"https://image.tmdb.org/t/p/w185" + r.poster_path}
