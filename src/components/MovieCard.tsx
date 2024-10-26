@@ -4,7 +4,6 @@ import { imageLoader } from "@/lib/utils";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Movie, WatchListItem } from "../../types";
-import { getWatchList } from "@/lib/server-actions";
 
 export const MovieCard = ({ movie }: { movie: Movie | WatchListItem }) => {
   const router = useRouter();

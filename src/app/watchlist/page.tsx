@@ -1,6 +1,6 @@
 import { MovieCard } from "@/components/MovieCard";
 import { getWatchList } from "@/lib/server-actions";
-import { Movie, WatchListItem } from "../../../types";
+import { WatchListItem } from "../../../types";
 
 export default async function Page() {
   const watchList = await getWatchList();

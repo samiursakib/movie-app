@@ -37,10 +37,9 @@ export const Navbar = () => {
 
   const { setGlobalState } = useGlobalState();
   const {
-    watch,
     control,
     handleSubmit,
-    formState: { errors, isSubmitSuccessful },
+    formState: { errors },
   } = useForm<SearchFormDataType>({
     resolver: zodResolver(searchFormSchema),
     defaultValues: {
@@ -123,6 +122,11 @@ export const Navbar = () => {
                           <IoSearchSharp className="text-xl" />
                         </Button>
                       </form>
+                      {errors.searchInputValue && (
+                        <p className="text-red-900">
+                          {errors.searchInputValue.message}
+                        </p>
+                      )}
                     </DialogContent>
                   </Dialog>
                   <Button onClick={toggleDarkMode}>
@@ -174,6 +178,11 @@ export const Navbar = () => {
                   <IoSearchSharp className="text-xl" />
                 </Button>
               </form>
+              {errors.searchInputValue && (
+                <p className="text-red-900">
+                  {errors.searchInputValue.message}
+                </p>
+              )}
             </DialogContent>
           </Dialog>
           <Button onClick={toggleDarkMode}>

@@ -20,13 +20,11 @@ import { Button } from "./ui/button";
 import { FaBookmark, FaRegBookmark } from "react-icons/fa";
 import {
   addToWatchList,
-  getWatchList,
   isAddedToWatchList,
   removeFromWatchList,
 } from "@/lib/server-actions";
 import { useEffect, useState } from "react";
 import { useToast } from "@/hooks/use-toast";
-import { Toast } from "./ui/toast";
 import { Toaster } from "./ui/toaster";
 
 export const MovieComponent = ({

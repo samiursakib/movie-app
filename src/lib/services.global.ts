@@ -5,7 +5,7 @@ export const getPopularMovies = async ({ pageParam = 1 }) => {
   try {
     const response = await fetch(
       constants.popularMoviesUrl +
-        `?language=en-US&page=${pageParam}&api_key=${API_KEY}`,
+        `?language=en-US&page=${pageParam}&api_key=${API_KEY}`
     );
     if (!response.ok) {
       throw new Error(`Error during fetching popular movies ${response}`);
@@ -22,11 +22,15 @@ export const searchMovies = async ({
   key,
   searchInputValue = "",
   pageParam = 1,
+}: {
+  key: string;
+  searchInputValue: string;
+  pageParam: number;
 }) => {
   try {
     const response = await fetch(
       constants.searchMoviesUrl +
-        `?api_key=${API_KEY}&query=${searchInputValue}&page=${pageParam}`,
+        `?api_key=${API_KEY}&query=${searchInputValue}&page=${pageParam}`
     );
     if (!response.ok) {
       throw new Error(`Error during searching movies ${response}`);
@@ -47,7 +51,7 @@ export const getMovieDetails = async (movieId: number) => {
         next: {
           revalidate: 60,
         },
-      },
+      }
     );
     if (!response.ok) {
       throw new Error(`Error during fetching movie details ${response}`);
@@ -68,7 +72,7 @@ export const getMovieCredits = async (movieId: number) => {
         next: {
           revalidate: 60,
         },
-      },
+      }
     );
     if (!response.ok) {
       throw new Error(`Error during fetching movie credits ${response}`);
@@ -84,11 +88,11 @@ export const getMovieCredits = async (movieId: number) => {
 export const getMovieRecommendations = async (movieId: number) => {
   try {
     const response = await fetch(
-      `${constants.getMovieDetailsUrl}/${movieId}/recommendations?api_key=${API_KEY}`,
+      `${constants.getMovieDetailsUrl}/${movieId}/recommendations?api_key=${API_KEY}`
     );
     if (!response.ok) {
       throw new Error(
-        `Error during fetching movie recommendations ${response}`,
+        `Error during fetching movie recommendations ${response}`
       );
     }
     const result = await response.json();
