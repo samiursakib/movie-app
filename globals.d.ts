@@ -9,5 +9,5 @@ declare global {
     }
   }
 
-  var watchList: WatchListItem[];
+  let watchList: WatchListItem[];
 }

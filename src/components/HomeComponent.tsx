@@ -55,7 +55,7 @@ const HomeComponent = () => {
     if (inView && isSearching) {
       searchQuery.fetchNextPage();
     }
-  }, [inView]);
+  }, [inView, isSearching, query, searchQuery]);
 
   if (currentData.isPending) {
     return (

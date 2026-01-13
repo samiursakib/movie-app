@@ -67,7 +67,10 @@ export const Navbar = () => {
     <nav className="mb-8 h-16 border-b-[1px] border-b-slate-300 dark:border-b-slate-800 flex items-center">
       <div className="md:container px-8 w-full md:px-24 md:mx-auto flex flex-col md:flex-row justify-between">
         <div className="flex gap-4 items-center justify-between md:justify-start">
-          <div className="flex gap-2">
+          <div
+            className="flex gap-2 cursor-pointer"
+            onClick={() => router.push("/")}
+          >
             <Image
               src={logoPath}
               alt="logo"

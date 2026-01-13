@@ -22,7 +22,7 @@ import {
   addToWatchList,
   isAddedToWatchList,
   removeFromWatchList,
-} from "@/lib/server-actions";
+} from "@/lib/helpers";
 import { useEffect, useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { Toaster } from "./ui/toaster";
@@ -39,13 +39,13 @@ export const MovieComponent = ({
   const router = useRouter();
   const { toast } = useToast();
   const [isAdded, setIsAdded] = useState(false);
-  const handleToggleBookmark = async (movie: WatchListItem) => {
+  const handleToggleBookmark = (movie: WatchListItem) => {
     if (isAdded) {
-      await removeFromWatchList(movie.id);
+      removeFromWatchList(movie.id);
       setIsAdded(false);
       toast({ description: "Removed from watchlist" });
     } else {
-      await addToWatchList(movie);
+      addToWatchList(movie);
       setIsAdded(true);
       toast({ description: "Added to watchlist" });
     }
@@ -57,7 +57,7 @@ export const MovieComponent = ({
       setIsAdded(result);
     };
     update();
-  }, []);
+  }, [movie.id]);
   return (
     <div className="p-4 pt-0 md:container md:px-24 mx-auto flex flex-col md:flex-row">
       <Toaster />
